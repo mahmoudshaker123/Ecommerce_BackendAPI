@@ -30,7 +30,7 @@ def register(request):
             return Response(
                 {'error':'This email already exists!' },
                     status=status.HTTP_400_BAD_REQUEST
-                    )
+                    ) 
     else:
         return Response(user.errors)
     
