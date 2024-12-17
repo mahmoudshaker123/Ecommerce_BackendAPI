@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view , permission_classes
 from rest_framework.response import Response 
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
 from .serializers import *
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 @api_view(['POST'])
@@ -19,6 +20,7 @@ def register(request):
                 last_name = data['last_name'], 
                 email = data['email'] , 
                 username = data['email'] , 
+
                 password = make_password(data['password']),
             )
         
@@ -34,3 +36,11 @@ def register(request):
     else:
         return Response(user.errors)
     
+
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+
+def current_user(request):
+    user = SignUpSerializer(request.user)

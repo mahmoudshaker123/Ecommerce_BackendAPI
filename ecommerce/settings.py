@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6th^eiom3w$*v1p6!m^s&1ti!*nam#aqlr0$o^_8h29=*cbd6x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -82,10 +82,15 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ecommerce',      # اسم قاعدة البيانات
+        'USER': 'ecommerce',          # اسم المستخدم
+        'PASSWORD': 'mahmoud',       # كلمة المرور
+        'HOST': 'localhost',             # عنوان المضيف (أو IP)
+        'PORT': '5432',                  # المنفذ الافتراضي لـ PostgreSQL
     }
 }
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
